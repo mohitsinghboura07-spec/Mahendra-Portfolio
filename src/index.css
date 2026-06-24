@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-cyber-bg: #060913;
+  --color-cyber-dark: #0a0e17;
+  --color-cyber-card: rgba(10, 14, 23, 0.7);
+  --color-neon-cyan: #00f0ff;
+  --color-neon-purple: #a855f7;
+  --color-neon-pink: #ff007f;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-cyber-bg);
+    color: #e2e8f0;
+    font-family: var(--font-sans);
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #060913;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00f0ff;
+    box-shadow: 0 0 10px #00f0ff;
+  }
+
+  /* Selection style */
+  ::selection {
+    background: rgba(0, 240, 255, 0.2);
+    color: #00f0ff;
+  }
+}
+
+@layer utilities {
+  /* Sci-fi Grids and Glows */
+  .grid-bg {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  }
+
+  .radial-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, rgba(0, 240, 255, 0.05) 50%, transparent 100%);
+  }
+
+  .cyan-glow-text {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+  }
+
+  .purple-glow-text {
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.6), 0 0 20px rgba(168, 85, 247, 0.3);
+  }
+
+  .glass-panel {
+    background: rgba(10, 14, 23, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-panel-cyan-hover {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-panel-cyan-hover:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), inset 0 0 10px rgba(0, 240, 255, 0.05);
+    transform: translateY(-4px);
+  }
+
+  .glass-panel-purple-hover {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-panel-purple-hover:hover {
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.15), inset 0 0 10px rgba(168, 85, 247, 0.05);
+    transform: translateY(-4px);
+  }
+
+  /* Scanline effect */
+  .scanline::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 99999;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+
+  /* ==========================================
+     GEOMETRIC BALANCE THEME UTILITIES
+     ========================================== */
+  .geo-card {
+    position: relative;
+    background: rgba(10, 14, 23, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .geo-card::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 14px; height: 14px;
+    border-top: 2.5px solid var(--color-neon-cyan);
+    border-left: 2.5px solid var(--color-neon-cyan);
+    border-top-left-radius: 12px;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+  }
+
+  .geo-card::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 14px; height: 14px;
+    border-bottom: 2.5px solid var(--color-neon-purple);
+    border-right: 2.5px solid var(--color-neon-purple);
+    border-bottom-right-radius: 12px;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+  }
+
+  .geo-card:hover::before {
+    width: 24px;
+    height: 24px;
+    border-color: #ffffff;
+  }
+
+  .geo-card:hover::after {
+    width: 24px;
+    height: 24px;
+    border-color: var(--color-neon-cyan);
+  }
+
+  /* Purple-dominant variant */
+  .geo-card-purple {
+    position: relative;
+    background: rgba(10, 14, 23, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .geo-card-purple::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 14px; height: 14px;
+    border-top: 2.5px solid var(--color-neon-purple);
+    border-left: 2.5px solid var(--color-neon-purple);
+    border-top-left-radius: 12px;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+  }
+
+  .geo-card-purple::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 14px; height: 14px;
+    border-bottom: 2.5px solid var(--color-neon-pink);
+    border-right: 2.5px solid var(--color-neon-pink);
+    border-bottom-right-radius: 12px;
+    pointer-events: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+  }
+
+  .geo-card-purple:hover::before {
+    width: 24px;
+    height: 24px;
+    border-color: #ffffff;
+  }
+
+  .geo-card-purple:hover::after {
+    width: 24px;
+    height: 24px;
+    border-color: var(--color-neon-purple);
+  }
+
+  /* Sharp technical lines */
+  .tech-border-r {
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+
+  .tech-border-l {
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+  }
+
+  /* High contrast visual balances */
+  .visual-balance-bg {
+    background: radial-gradient(circle at 100% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 0% 100%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+  }
+}
+
+/* Custom Animation Keyframes */
+@keyframes grid-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes scan-up {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-100vh); }
+}
+
+.animate-grid-pulse {
+  animation: grid-pulse 8s infinite ease-in-out;
+}
+
+.animate-scan-up {
+  animation: scan-up 12s infinite linear;
+}
+
+/* Custom Hide Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes equalizerBar {
+  0% { transform: scaleY(0.35); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 0.8s infinite;
+}
+
